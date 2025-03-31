@@ -48,6 +48,9 @@ namespace Codeworx.Rest.UnitTests.TestServerUtilities
                 })
                 .AddControllers(options =>
             {
+
+                options.OutputFormatters.RemoveType<StringOutputFormatter>();
+                options.OutputFormatters.Add(new CustomStringOutputFormatter());
                 options.InputFormatters.Add(new ProtobufInputFormatter(RuntimeTypeModel.Default));
                 options.OutputFormatters.Add(new ProtobufOutputFormatter(RuntimeTypeModel.Default));
                 options.InputFormatters.Add(new StreamInputFormatter());
