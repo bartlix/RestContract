@@ -417,6 +417,18 @@ namespace Codeworx.Rest.Client
 
                     case float value:
                         return value.ToString(culture);
+
+                    case byte value:
+                        return value.ToString(culture);
+
+                    case short value:
+                        return value.ToString(culture);
+
+                    case int value:
+                        return value.ToString(culture);
+
+                    case long value:
+                        return value.ToString(culture);
                 }
 
                 return data.ToString();
