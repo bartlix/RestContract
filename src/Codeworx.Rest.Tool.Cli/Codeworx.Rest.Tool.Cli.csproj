@@ -2,7 +2,7 @@
 
 	<PropertyGroup>
 		<OutputType>Exe</OutputType>
-		<TargetFrameworks>net8</TargetFrameworks>
+		<TargetFrameworks>net8;net9</TargetFrameworks>
 		<LangVersion>Latest</LangVersion>
 		<PackAsTool>true</PackAsTool>
 		<ToolCommandName>dotnet-restcontract</ToolCommandName>
@@ -10,13 +10,13 @@
 
 	<ItemGroup>
 		<PackageReference Include="CommandLineParser" Version="2.9.1" />
-		<PackageReference Include="Microsoft.Build.Locator" Version="1.7.8" />
+		<PackageReference Include="Microsoft.Build.Locator" Version="1.9.1" />
 		<PackageReference Include="System.Text.Json" Version="9.0.0" />
 		<PackageReference Include="System.Security.Cryptography.Pkcs" Version="8.0.1" />
 		<PackageReference Include="System.Security.Cryptography.Xml" Version="8.0.2" />
-		<PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.12.0" />
-		<PackageReference Include="Microsoft.CodeAnalysis.Workspaces.MSBuild" Version="4.12.0" />
-		<PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="4.12.0" />
+		<PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.13.0" />
+		<PackageReference Include="Microsoft.CodeAnalysis.Workspaces.MSBuild" Version="4.13.0" />
+		<PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="4.13.0" />
 	</ItemGroup>
 
 	<ItemGroup>

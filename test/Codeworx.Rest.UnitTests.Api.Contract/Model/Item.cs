@@ -10,7 +10,7 @@ namespace Codeworx.Rest.UnitTests.Model
         public Guid Id { get; set; }
 
         [DataMember(Order = 2)]
-        public string Name { get; set; }
+        public string Name { get; set; } 
 
         [DataMember(Order = 3)]
         public int Number { get; set; }
