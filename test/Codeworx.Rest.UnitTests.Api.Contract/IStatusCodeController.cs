@@ -18,5 +18,11 @@ namespace Codeworx.Rest.UnitTests.Api.Contract
         [ResponseType((int)System.Net.HttpStatusCode.Gone, typeof(EntryNotFoundError))]
         [ResponseType((int)System.Net.HttpStatusCode.Conflict, typeof(StillInUseError))]
         Task DeleteEntry(string id);
+
+        [RestGet("Data")]
+        [ResponseType((int)System.Net.HttpStatusCode.OK, typeof(SampleDataItem))]
+        [ResponseType((int)System.Net.HttpStatusCode.Gone, typeof(EntryNotFoundError))]
+        [ResponseType((int)System.Net.HttpStatusCode.Conflict, typeof(StillInUseError))]
+        Task<SampleDataItem> GetDataItemAsync(string id);
     }
 }

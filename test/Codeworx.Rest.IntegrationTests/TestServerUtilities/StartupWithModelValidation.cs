@@ -19,33 +19,17 @@ using ProtoBuf.Meta;
 
 namespace Codeworx.Rest.UnitTests.TestServerUtilities
 {
-    public class Startup
+    public class StartupWithModelValidation
     {
         public void Configure(IApplicationBuilder app)
         {
-            app.UseMiddleware<ExceptionMiddleware>();
-            app.UseAuthentication();
             app.UseRouting();
-            app.UseAuthorization();
             app.UseEndpoints(endpoints => endpoints.MapControllers());
-            app.UseOpenApi();
-
         }
 
         public void ConfigureServices(IServiceCollection services)
         {
             services
-                .AddOpenApiDocument(options =>
-                {
-                    options.SchemaSettings.TypeMappers.Add(new PrimitiveTypeMapper(typeof(Stream), p =>
-                    {
-                        p.IsNullableRaw = false;
-                        p.Format = "binary";
-                        p.Type = NJsonSchema.JsonObjectType.String;
-                    }));
-                    options.OperationProcessors.Add(new StreamBodyOperationProcessor());
-                    options.OperationProcessors.Add(new ProducesConsumesProcessor());
-                })
                 .AddControllers(options =>
             {
 
@@ -56,15 +40,7 @@ namespace Codeworx.Rest.UnitTests.TestServerUtilities
                 options.InputFormatters.Add(new StreamInputFormatter());
                 options.InputFormatters.Add(new PlainTextInputFormatter());
             })
-                .AddRestContract();
-
-            services.AddAuthentication("TEST")
-                .AddScheme<DummyAuthenticationOptions, DummyAuthenticationHandler>("TEST", p => { });
-
-            services.AddAuthorization(p => p.AddPolicy("Default", builder =>
-            {
-                builder.RequireAuthenticatedUser();
-            }));
+                .AddRestContract(true);
         }
 
         private class PlainTextInputFormatter : InputFormatter

@@ -22,5 +22,10 @@ namespace Codeworx.Rest.UnitTests.Generated
         {
             return CallAsync(c => c.DeleteEntry(id));
         }
+
+        public global::System.Threading.Tasks.Task<global::Codeworx.Rest.UnitTests.Api.Contract.Model.SampleDataItem> GetDataItemAsync(string id)
+        {
+            return CallAsync(c => c.GetDataItemAsync(id));
+        }
     }
 }

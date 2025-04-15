@@ -22,7 +22,6 @@ namespace Codeworx.Rest.UnitTests.TestServerUtilities
         public ProtobufOutputFormatter(TypeModel typeModel)
         {
             SupportedMediaTypes.Add(MediaTypeHeaderValue.Parse(ContentType));
-            this.SupportedMediaTypes.Add(ContentType);
             _typeModel = typeModel;
         }
 

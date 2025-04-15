@@ -32,5 +32,19 @@ namespace Codeworx.Rest.UnitTests.Api
 
             return Task.CompletedTask;
         }
+
+        public Task<SampleDataItem> GetDataItemAsync(string id)
+        {
+            if (id == "1")
+            {
+                throw new ServiceException<EntryNotFoundError>(new EntryNotFoundError());
+            }
+            else if (id == "2")
+            {
+                throw new ServiceException<StillInUseError>(new StillInUseError { BlockingResource = "Invoice" });
+            }
+
+            return Task.FromResult(new SampleDataItem { Id = Guid.NewGuid(), Name = "test" });
+        }
     }
 }
