@@ -18,7 +18,15 @@ namespace Codeworx.Rest.AspNetCore.Authorization
 
         protected override void TransformParameter(BodyMemberAttribute source, ParameterModel model, MetadataProviderContext context)
         {
-            model.BindingInfo = BindingInfo.GetBindingInfo(new object[] { new FromBodyAttribute() });
+            var attribute = new FromBodyAttribute()
+            {
+                EmptyBodyBehavior = source.AllowNull ? EmptyBodyBehavior.Allow : EmptyBodyBehavior.Default,
+            };
+
+            model.BindingInfo = BindingInfo.GetBindingInfo(new object[]
+            {
+                attribute,
+            });
         }
     }
 }

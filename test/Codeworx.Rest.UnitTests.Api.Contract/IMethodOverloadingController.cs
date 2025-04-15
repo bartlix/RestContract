@@ -1,5 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Codeworx.Rest.UnitTests.Model;
 
 namespace Codeworx.Rest.UnitTests.Api.Contract

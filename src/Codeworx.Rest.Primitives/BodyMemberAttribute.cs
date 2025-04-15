@@ -18,5 +18,7 @@ namespace Codeworx.Rest
         }
 
         public string[] ContentTypes { get; }
+
+        public bool AllowNull { get; set; }
     }
 }

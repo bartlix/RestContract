@@ -12,7 +12,20 @@ namespace Microsoft.Extensions.DependencyInjection
     {
         public static IMvcCoreBuilder AddRestContract(this IMvcCoreBuilder builder)
         {
-            builder.AddMvcOptions(p => p.Filters.Add(new ErrorResponseFilter()));
+            return builder.AddRestContract(false);
+        }
+
+        public static IMvcCoreBuilder AddRestContract(this IMvcCoreBuilder builder, bool validateModelState)
+        {
+            builder.AddMvcOptions(p =>
+            {
+                if (validateModelState)
+                {
+                    p.Conventions.Add(new InvalidModelStateFilterConvention());
+                }
+
+                p.Filters.Add(new ErrorResponseFilter());
+            });
 
             builder = builder.ConfigureApplicationPartManager(p => p.FeatureProviders.Add(new ContractControllerFeatureProvider()));
             builder.Services.AddRestContractServices();
@@ -22,7 +35,20 @@ namespace Microsoft.Extensions.DependencyInjection
 
         public static IMvcBuilder AddRestContract(this IMvcBuilder builder)
         {
-            builder.AddMvcOptions(p => p.Filters.Add(new ErrorResponseFilter()));
+            return builder.AddRestContract(false);
+        }
+
+        public static IMvcBuilder AddRestContract(this IMvcBuilder builder, bool validateModelState)
+        {
+            builder.AddMvcOptions(p =>
+            {
+                if (validateModelState)
+                {
+                    p.Conventions.Add(new InvalidModelStateFilterConvention());
+                }
+
+                p.Filters.Add(new ErrorResponseFilter());
+            });
             builder = builder.ConfigureApplicationPartManager(p => p.FeatureProviders.Add(new ContractControllerFeatureProvider()));
             builder.Services.AddRestContractServices();
 

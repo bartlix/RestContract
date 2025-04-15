@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading;
 using System.Threading.Tasks;
 using Codeworx.Rest.UnitTests.Api.Contract;
 using Codeworx.Rest.UnitTests.Data;
@@ -90,10 +91,13 @@ namespace Codeworx.Rest.UnitTests
         public static IEnumerable<object[]> IntParameters = new List<object[]>
         {
             new object[] {ItemsGenerator.TestInt, FormatterSelection.Json},
+            new object[] {ItemsGenerator.TestNegativeInt, FormatterSelection.Json},
             new object[] {null, FormatterSelection.Json},
             new object[] {ItemsGenerator.TestInt, FormatterSelection.Protobuf},
+            new object[] {ItemsGenerator.TestNegativeInt, FormatterSelection.Protobuf},
             new object[] {null, FormatterSelection.Protobuf},
             new object[] {ItemsGenerator.TestInt, FormatterSelection.NewtonsoftJson},
+            new object[] {ItemsGenerator.TestNegativeInt, FormatterSelection.NewtonsoftJson},
             new object[] {null, FormatterSelection.NewtonsoftJson},
         };
 
@@ -361,6 +365,16 @@ namespace Codeworx.Rest.UnitTests
         [MemberData(nameof(IntParameters))]
         public async Task TestIntQueryParameter(int? expectedParameter, FormatterSelection formatter)
         {
+            var client = Client<ISerializeParameterController>(formatter);
+            var actualParameter = await client.GetIntQueryParameter(expectedParameter);
+            Assert.Equal(expectedParameter, actualParameter);
+        }
+
+        [Theory]
+        [MemberData(nameof(IntParameters))]
+        public async Task TestIntQueryParameterInCultureSV(int? expectedParameter, FormatterSelection formatter)
+        {
+            Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("sv");
             var client = Client<ISerializeParameterController>(formatter);
             var actualParameter = await client.GetIntQueryParameter(expectedParameter);
             Assert.Equal(expectedParameter, actualParameter);

@@ -17,6 +17,7 @@ namespace Codeworx.Rest.UnitTests.Data
         public static DateTimeOffset TestDateOffset = new DateTimeOffset(2019, 03, 09, 12, 21, 03, 123, TimeSpan.FromHours(3));
         public static Guid TestGuid = Guid.Parse("4f73dca4-86a6-4bfd-9a03-6f0e3ac254d1");
         public static int TestInt = 1;
+        public static int TestNegativeInt = -1;
         public static decimal TestDecimal = 5.789m;
         public static double TestDouble = 5.789d;
         public static float TestFloat = 5.789f;

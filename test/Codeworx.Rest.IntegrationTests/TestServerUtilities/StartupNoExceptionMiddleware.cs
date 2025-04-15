@@ -15,8 +15,7 @@ namespace Codeworx.Rest.UnitTests.TestServerUtilities
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvcCore()
-                .AddRestContract()
-                ;
+                .AddRestContract();
         }
     }
 }
